@@ -16,6 +16,7 @@ import Replys from "./replys";
 import ReplyInput from "./replyInput";
 import { useDispatch, useSelector } from "react-redux";
 import * as actionTypes from "../redux/actions/actionTypes";
+import { RootState } from "../redux/configureStore";
 
 interface IProps {
   people: {
@@ -56,17 +57,17 @@ const Comments: React.FC<IProps> = () => {
     });
   }, []);
 
-  let testComments = useSelector((state: any) => state.comments);
+  let comments = useSelector((state: any) => state.comments);
   useEffect(() => {
-    console.log(testComments);
-  }, [testComments]);
+    console.log(comments);
+  }, [comments]);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
   const renderList = (): JSX.Element[] => {
-    return testComments
-      ? testComments.map((comment: any) => {
+    return comments
+      ? comments.map((comment: any) => {
           return (
             <Box
               display="flex"
@@ -77,7 +78,7 @@ const Comments: React.FC<IProps> = () => {
                 <CardHeader
                   avatar={
                     <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                      {testComments}
+                      {comment.name.Char(0)}
                     </Avatar>
                   }
                   title={comment.name}

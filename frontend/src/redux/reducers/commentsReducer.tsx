@@ -4,7 +4,7 @@ import { postComment, getComments } from "../../api";
 const initialState = {
   comments: [],
 };
-
+//Känns fel
 const commentsReducer = async (state = initialState, action: any) => {
   switch (action.type) {
     case actionTypes.POST_COMMENT:
