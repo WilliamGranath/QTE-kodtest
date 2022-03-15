@@ -16,8 +16,8 @@ import Replys from "./replys";
 import ReplyInput from "./replyInput";
 import { useDispatch, useSelector } from "react-redux";
 import * as actionTypes from "../redux/actions/actionTypes";
-import { RootState } from "../redux/configureStore";
-
+import { connect } from "react-redux";
+import { fetchComments } from "../redux/actions/index";
 interface IProps {
   people: {
     name: string;
@@ -45,21 +45,18 @@ const Comments: React.FC<IProps> = () => {
     setVisible(true);
   };
 
-  /* const getAllComments: Function = async () => {
-    const comments = await fetch("http:localhost:3000/comments");
-    const commentsJson = await comments.json();
-    return commentsJson;
-  }; */
-
   useEffect(() => {
-    dispatch({
-      type: actionTypes.FETCH_COMMENTS,
-    });
+    const getData = async () => {
+      fetchComments();
+    };
+    getData();
   }, []);
 
   let comments = useSelector((state: any) => state.comments);
   useEffect(() => {
-    console.log(comments);
+    comments
+      .then((r: any) => console.log(r))
+      .catch((e: any) => console.error(e));
   }, [comments]);
 
   const handleExpandClick = () => {
@@ -119,9 +116,15 @@ const Comments: React.FC<IProps> = () => {
 
   return (
     <div>
-      <ul>test</ul>
+      <ul>{renderList()}</ul>
     </div>
   );
 };
 
-export default Comments;
+const mapDispatch = (dispatch: any) => {
+  return {
+    fetchComments: () => dispatch(fetchComments()),
+  };
+};
+
+export default connect(mapDispatch)(Comments);
