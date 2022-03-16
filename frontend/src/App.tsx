@@ -4,7 +4,7 @@ import CommentsList from "./components/commentsList";
 function App() {
   return (
     <div>
-      <p>Comments:</p>
+      <p style={{fontWeight: "700",fontSize: "20px", textAlign: "center"}}>COMMENTS</p>
       <CommentsList />
     </div>
   );

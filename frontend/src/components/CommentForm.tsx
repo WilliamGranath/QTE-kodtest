@@ -44,6 +44,7 @@ const CommentForm: React.FC<IProps> = ({ postComment }) => {
         marginBottom: "2em",
         position: "absolute",
         top: 23,
+        paddingLeft: "45px"
       }}
     >
       <Box sx={{ display: "flex", alignItems: "center" }}>
