@@ -14,7 +14,6 @@ interface IProps {
 }
 
 const CommentForm: React.FC<IProps> = ({ postComment }) => {
- 
   const [input, setInput] = useState({
     name: "",
     content: "",
@@ -31,8 +30,7 @@ const CommentForm: React.FC<IProps> = ({ postComment }) => {
   const handleClick = async () => {
     const { name, content } = input;
     if (!name) return;
-    postComment(name, content);
-    
+    postComment(name, content, null);
   };
   return (
     <Box
@@ -65,6 +63,7 @@ const CommentForm: React.FC<IProps> = ({ postComment }) => {
             onChange={handleChange}
             className="Post-input"
             name="content"
+            maxLength={255}
             value={input.content}
             placeholder="Comment"
           />
@@ -82,7 +81,8 @@ const CommentForm: React.FC<IProps> = ({ postComment }) => {
 };
 const mapDispatch = (dispatch: any) => {
   return {
-    postComment: (name: any, content: string) => dispatch(postComment(name, content)),
+    postComment: (name: any, content: string, replyingTo: any) =>
+      dispatch(postComment(name, content, replyingTo)),
   };
 };
 

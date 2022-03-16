@@ -1,7 +1,6 @@
 import commentsReducer from "../reducers/commentsReducer";
 import * as actionTypes from "./actionTypes";
 import getAllComments from "../../api/getComments";
-//Känns fel
 
 export const postCommentStart = () => {
   return { type: actionTypes.POST_COMMENT_START };
@@ -12,7 +11,7 @@ export const postCommentSuccess = () => {
 export const postCommentFail = (error: any) => {
   return { type: actionTypes.POST_COMMENT_FAIL, payload: error };
 };
-export const postComment = (name: string, content: string) => {
+export const postComment = (name: string, content: string, replyingTo: any) => {
   return async (dispatch: any) => {
     dispatch(postCommentStart());
     try {
@@ -22,7 +21,7 @@ export const postComment = (name: string, content: string) => {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, content }),
+        body: JSON.stringify({ name, content, replyingTo }),
       });
       if (response.ok) {
         dispatch(postCommentSuccess());

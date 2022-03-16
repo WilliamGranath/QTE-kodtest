@@ -18,7 +18,7 @@ const Test = sequelize.define("Test", {
     allowNull: false,
   },
   content: {
-    type: Sequelize.STRING,
+    type: Sequelize.STRING(255),
     allowNull: false,
   },
   replyingTo: {
@@ -47,7 +47,7 @@ app.post("/comment", async (req, res) => {
     await Test.create({
       name: req.body.name,
       content: req.body.content,
-      replyingTo: req.body.replyingTo
+      replyingTo: req.body.replyingTo,
     });
     res.send("SUCCESS");
   } catch (e) {
@@ -63,5 +63,5 @@ app.listen(port, () => {
   // Force sync all models
   // It will drop the table first
   // and re-create it afterwards
-  sequelize.sync({force: true});
+  sequelize.sync({ force: true });
 });
