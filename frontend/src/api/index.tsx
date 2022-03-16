@@ -1,4 +1,4 @@
-import postComment from './postComment';
-import getComments from './getComments';
+import postComments from "./postComment";
+import getAllComments from "./getComments";
 
-export { postComment, getComments };
+export { postComments, getAllComments };

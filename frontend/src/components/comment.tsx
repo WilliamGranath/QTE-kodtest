@@ -23,6 +23,7 @@ interface IProps {
     name: string;
     note?: string;
   }[];
+  items: any;
 }
 
 const ExpandMore = styled((props: { [x: string]: any; expand: any }) => {
@@ -36,49 +37,35 @@ const ExpandMore = styled((props: { [x: string]: any; expand: any }) => {
   }),
 }));
 
-const Comments: React.FC<IProps> = () => {
-  const dispatch = useDispatch();
+const Comments: React.FC<IProps> = ({ items }) => {
   const [expanded, setExpanded] = React.useState(false);
   const [renderComments, setRenderComments] = React.useState([]);
   const [visible, setVisible] = React.useState(false);
   const onClick = () => {
     setVisible(true);
   };
-
-  useEffect(() => {
-    const getData = async () => {
-      fetchComments();
-    };
-    getData();
-  }, []);
-
-  let comments = useSelector((state: any) => state.comments);
-  useEffect(() => {
-    comments
-      .then((r: any) => console.log(r))
-      .catch((e: any) => console.error(e));
-  }, [comments]);
-
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
   const renderList = (): JSX.Element[] => {
-    return comments
-      ? comments.map((comment: any) => {
+    return items
+      ? items.map((items: any, i: any) => {
           return (
             <Box
               display="flex"
               justifyContent="center"
               sx={{ marginBottom: 2 }}
+              key={items.id}
             >
               <Card sx={{ minWidth: 1000 }}>
                 <CardHeader
                   avatar={
                     <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                      {comment.name.Char(0)}
+                      {items.name.charAt(0)}
                     </Avatar>
                   }
-                  title={comment.name}
+                  title={items.name}
                 />
                 <CardContent>
                   <Typography
@@ -86,7 +73,7 @@ const Comments: React.FC<IProps> = () => {
                     variant="body2"
                     color="text.secondary"
                   >
-                    {comment.content}
+                    {items.content}
                   </Typography>
                 </CardContent>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
@@ -120,11 +107,15 @@ const Comments: React.FC<IProps> = () => {
     </div>
   );
 };
-
+const mapState = (state: any) => {
+  return {
+    ...state.comments,
+  };
+};
 const mapDispatch = (dispatch: any) => {
   return {
     fetchComments: () => dispatch(fetchComments()),
   };
 };
 
-export default connect(mapDispatch)(Comments);
+export default connect(mapState, mapDispatch)(Comments);

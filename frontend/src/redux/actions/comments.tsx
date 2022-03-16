@@ -1,8 +1,39 @@
+import commentsReducer from "../reducers/commentsReducer";
 import * as actionTypes from "./actionTypes";
+import getAllComments from "../../api/getComments";
 //Känns fel
-export const postComment = (name: string, content: string) => {
-  return { type: actionTypes.POST_COMMENT, payload: { name, content } };
+
+export const postCommentStart = () => {
+  return { type: actionTypes.POST_COMMENT_START };
 };
+export const postCommentSuccess = () => {
+  return { type: actionTypes.POST_COMMENT_SUCCESS };
+};
+export const postCommentFail = (error: any) => {
+  return { type: actionTypes.POST_COMMENT_FAIL, payload: error };
+};
+export const postComment = (name: string, content: string) => {
+  return async (dispatch: any) => {
+    dispatch(postCommentStart());
+    try {
+      const response = await fetch("http://localhost:3000/comment", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, content }),
+      });
+      if (response.ok) {
+        dispatch(postCommentSuccess());
+        dispatch(fetchComments());
+      }
+    } catch (e) {
+      dispatch(postCommentFail(e));
+    }
+  };
+};
+
 export const fetchCommentsStart = () => {
   return { type: actionTypes.FETCH_COMMENTS_START };
 };
@@ -14,18 +45,23 @@ export const fetchCommentsFail = (error: any) => {
   };
 };
 
-export const fetchCommentsSucces = () => {
+export const fetchCommentsSucces = (items: any) => {
   return {
-    type: actionTypes.FETCH_COMMENTS_SUCCES
-  }
-}
+    type: actionTypes.FETCH_COMMENTS_SUCCES,
+    payload: items,
+  };
+};
 
 export const fetchComments = () => {
   return async (dispatch: any) => {
     dispatch(fetchCommentsStart());
     try {
-      const comments = await fetch("http://localhost:3000/comments");
-      dispatch(fetchCommentsSucces())
+      const response = await fetch("http://localhost:3000/comments");
+      if (response.ok) {
+        const comments = await response.json();
+        console.log(comments);
+        dispatch(fetchCommentsSucces(comments));
+      }
     } catch (error) {
       dispatch(fetchCommentsFail(error));
     }

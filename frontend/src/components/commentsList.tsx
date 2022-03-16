@@ -7,6 +7,7 @@ export interface IState {
     name: string;
     note?: string;
   }[];
+  items: any
 }
 
 function CommentList() {
@@ -16,9 +17,10 @@ function CommentList() {
       note: "Hello im cool",
     },
   ]);
+  
   return (
     <div>
-      <Comment people={people} />
+      <Comment people={people} items={undefined} />
       <CommentForm setPeople={setPeople} people={people} />
     </div>
   );

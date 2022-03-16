@@ -1,18 +1,33 @@
 import * as actionTypes from "../actions/actionTypes";
-import { postComment, getComments } from "../../api";
+import { postComments, getAllComments } from "../../api";
 
 const initialState = {
   loading: false,
   error: null,
-  comments: [],
+  items: [],
 };
 //Känns fel
-const commentsReducer = async (state = initialState, action: any) => {
+const commentsReducer = (state = initialState, action: any) => {
   switch (action.type) {
-    case actionTypes.POST_COMMENT:
-      const { name, content } = action.payload;
-      await postComment(name, content);
-      return await getComments();
+    case actionTypes.POST_COMMENT_START:
+      return {
+        ...state,
+        error: null,
+        loading: true,
+      };
+    case actionTypes.POST_COMMENT_SUCCESS:
+      return {
+        ...state,
+        error: null,
+        loading: false,
+      };
+    case actionTypes.POST_COMMENT_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false,
+      };
+
     case actionTypes.FETCH_COMMENTS_START:
       return {
         ...state,
@@ -24,7 +39,7 @@ const commentsReducer = async (state = initialState, action: any) => {
         ...state,
         error: null,
         loading: false,
-        comments: action.payload,
+        items: action.payload,
       };
     case actionTypes.FETCH_COMMENTS_FAIL:
       return {

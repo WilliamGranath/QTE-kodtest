@@ -3,16 +3,18 @@ import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { IState as Props } from "./commentsList";
-import { useDispatch } from "react-redux";
+import { connect, useDispatch } from "react-redux";
+import { postComment } from "../redux/actions/index";
 import * as actionTypes from "../redux/actions/actionTypes";
 
 interface IProps {
   setPeople: React.Dispatch<React.SetStateAction<Props["people"]>>;
   people: Props["people"];
+  postComment: any;
 }
 
-const CommentForm: React.FC<IProps> = ({ setPeople, people }) => {
-  const dispatch = useDispatch();
+const CommentForm: React.FC<IProps> = ({ postComment }) => {
+ 
   const [input, setInput] = useState({
     name: "",
     content: "",
@@ -29,13 +31,8 @@ const CommentForm: React.FC<IProps> = ({ setPeople, people }) => {
   const handleClick = async () => {
     const { name, content } = input;
     if (!name) return;
-    dispatch({
-      type: actionTypes.POST_COMMENT,
-      payload: {
-        name,
-        content,
-      },
-    });
+    postComment(name, content);
+    
   };
   return (
     <Box
@@ -83,4 +80,10 @@ const CommentForm: React.FC<IProps> = ({ setPeople, people }) => {
     </Box>
   );
 };
-export default CommentForm;
+const mapDispatch = (dispatch: any) => {
+  return {
+    postComment: (name: any, content: string) => dispatch(postComment(name, content)),
+  };
+};
+
+export default connect(null, mapDispatch)(CommentForm);
