@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
-import { connect, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 import { postComment } from "../redux/actions/index";
 
 interface IProps {
