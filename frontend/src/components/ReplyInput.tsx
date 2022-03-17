@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { connect } from "react-redux";
 import { postComment } from "../redux/actions/index";
 
@@ -40,8 +40,19 @@ const ReplyInput: React.FC<IProps> = ({ postComment, replyingTo }) => {
         marginTop: "2em",
         marginBottom: "2em",
         position: "absolute",
+        flexDirection: "column",
       }}
     >
+      <Typography sx={{
+            textAlign: "flex-start",
+            fontSize: "12px",
+            fontWeight: 500,
+            textDecoration: "underline",
+          }}
+          variant="body2"
+          color="text.secondary"
+        >
+          Comment Post</Typography>
       <Box sx={{ display: "flex", alignItems: "center" }}>
         <Box sx={{ display: "flex", flexDirection: "column" }}>
           <input
