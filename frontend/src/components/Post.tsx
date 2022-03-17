@@ -10,7 +10,7 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Collapse from "@mui/material/Collapse";
 import Comments from "./Comments";
-import ReplyInput from "./replyInput";
+import ReplyInput from "./ReplyInput";
 
 interface IProps {
   item: any;
