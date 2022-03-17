@@ -1,11 +1,13 @@
 import React from "react";
-import CommentsList from "./components/commentsList";
+import Feed from "./components/Feed";
 
 function App() {
   return (
     <div>
-      <p style={{fontWeight: "700",fontSize: "20px", textAlign: "center"}}>COMMENTS</p>
-      <CommentsList />
+      <p style={{ fontWeight: "700", fontSize: "20px", textAlign: "center" }}>
+        COMMENTS
+      </p>
+      <Feed />
     </div>
   );
 }

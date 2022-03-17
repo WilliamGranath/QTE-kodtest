@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
-import Typography from "@mui/material/Typography";
-import { IState as Props } from "./commentsList";
 import { connect, useDispatch } from "react-redux";
 import { postComment } from "../redux/actions/index";
-import * as actionTypes from "../redux/actions/actionTypes";
 
 interface IProps {
   replyingTo: any;
@@ -46,9 +43,13 @@ const ReplyInput: React.FC<IProps> = ({ postComment, replyingTo }) => {
       }}
     >
       <Box sx={{ display: "flex", alignItems: "center" }}>
-        <Box sx={{ display: "flex", flexDirection: "column", width: 200 }}>
+        <Box sx={{ display: "flex", flexDirection: "column" }}>
           <input
-            style={{ marginBottom: "10px" }}
+            style={{
+              marginBottom: "5px",
+              backgroundColor: "#f8f8f8",
+              border: "2px solid rgb(96 125 139 / 30%)",
+            }}
             type="text"
             onChange={handleChange}
             className="Post-input"
@@ -57,7 +58,12 @@ const ReplyInput: React.FC<IProps> = ({ postComment, replyingTo }) => {
             placeholder="Name"
           />
           <textarea
-            style={{}}
+            style={{
+              resize: "none",
+              backgroundColor: "#f8f8f8",
+              border: "2px solid rgb(96 125 139 / 30%)",
+              width: "200px",
+            }}
             onChange={handleChange}
             className="Post-input"
             name="content"
@@ -65,14 +71,14 @@ const ReplyInput: React.FC<IProps> = ({ postComment, replyingTo }) => {
             value={input.content}
             placeholder="Comment"
           />
-          <Button
-            onClick={handleClick}
-            variant="contained"
-            sx={{ marginTop: 2 }}
-          >
-            POST
-          </Button>
         </Box>
+        <Button
+          onClick={handleClick}
+          variant="contained"
+          sx={{ height: "100%", marginLeft: "5px" }}
+        >
+          POST
+        </Button>
       </Box>
     </Box>
   );
