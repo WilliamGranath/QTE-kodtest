@@ -35,6 +35,7 @@ frontend
 - NPM version 8.3.0+ CLI installerat
 - GIT CLI installed
 
+
 ### To run locally:
 
 1. Install a MySQL Server https://dev.mysql.com/downloads/mysql/
