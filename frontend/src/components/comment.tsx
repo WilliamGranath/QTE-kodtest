@@ -10,10 +10,9 @@ import Collapse from "@mui/material/Collapse";
 
 interface IProps {
   reply: any;
-  expanded: any;
 }
 
-const Comment: React.FC<IProps> = ({ reply, expanded }) => {
+const Comment: React.FC<IProps> = ({ reply }) => {
   return (
     <Box
       display="flex"
@@ -36,7 +35,7 @@ const Comment: React.FC<IProps> = ({ reply, expanded }) => {
             {reply.content}
           </Typography>
         </CardContent>
-        <Collapse in={expanded} timeout="auto" unmountOnExit></Collapse>
+        <Collapse timeout="auto" unmountOnExit></Collapse>
       </Card>
     </Box>
   );

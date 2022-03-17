@@ -1,6 +1,4 @@
-import commentsReducer from "../reducers/commentsReducer";
 import * as actionTypes from "./actionTypes";
-import getAllComments from "../../api/getComments";
 
 export const postCommentStart = () => {
   return { type: actionTypes.POST_COMMENT_START };

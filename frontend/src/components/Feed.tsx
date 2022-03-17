@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Posts from "./Posts";
 import CommentForm from "./CommentForm";
 

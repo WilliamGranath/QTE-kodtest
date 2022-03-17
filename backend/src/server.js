@@ -58,7 +58,6 @@ app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
   // Create all the table defined using
   // sequelize in Database
-
   // Force sync all models
   // It will drop the table first
   // and re-create it afterwards

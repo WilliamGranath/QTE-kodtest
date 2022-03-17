@@ -33,8 +33,6 @@ const Posts: React.FC<IProps> = ({ items }) => {
   };
 
   const renderList = (): JSX.Element[] => {
-    // Loop through items and find all replies
-    // [C,C,C,C,R,C,R,C,R ...]
     const replies = items.filter((item: any) => item.replyingTo);
     const comments = items.filter((item: any) => !item.replyingTo);
 

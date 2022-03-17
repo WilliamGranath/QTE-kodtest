@@ -17,10 +17,12 @@ backend
 
 frontend
 └───components
-    └───Comment.tsx                         # Mapping each comment and rendering them
-    └───CommentForm.tsx                     # Handles posting new comments
-    └───Replies.tsx                         # Mapping each reply to render under comments
-    └───ReplyInput.tsx                      # Handles posting replies to existing comments
+    └───Comment.tsx                         # Comment styling
+    └───Comments.tsx                        # Mapping all replies from database
+    └───CommentForm.tsx                     # Creating a new post to our database
+    └───Post.tsx                            # Styling for all NEW posts
+    └───Posts.tsx                           # Mapping all posts and and filters New posts, and replies
+    └───ReplyInput                     # Handles posting replies to existing comments
 └───redux
     └───actions
         └───comments.tsx                    # Handles all redux actions (both postCommets and fetchComments)
@@ -34,7 +36,6 @@ frontend
 - NodeJS version 14.18.1+
 - NPM version 8.3.0+ CLI installerat
 - GIT CLI installed
-
 
 ### To run locally:
 
