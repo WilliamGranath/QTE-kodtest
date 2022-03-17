@@ -1,6 +1,5 @@
 const express = require("express");
 const sequelize = require("./database/connection");
-const Comment = require("./models/comment");
 const app = express();
 const port = 3000;
 const cors = require("cors");

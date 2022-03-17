@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
@@ -7,15 +7,12 @@ import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
 import Collapse from "@mui/material/Collapse";
-import Replys from "./replys";
+import Replys from "./Replies";
 import ReplyInput from "./replyInput";
-import { useDispatch, useSelector } from "react-redux";
-import * as actionTypes from "../redux/actions/actionTypes";
 import { connect } from "react-redux";
 import { fetchComments } from "../redux/actions/index";
 interface IProps {

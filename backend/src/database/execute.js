@@ -1,5 +1,4 @@
 const mysql = require("mysql2");
-const { Comment } = require("../models/comment");
 // create the connection to database
 const connection = mysql.createConnection({
   host: "localhost",

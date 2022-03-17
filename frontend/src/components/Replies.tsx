@@ -7,13 +7,12 @@ import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Button from "@mui/material/Button";
+
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
 import Collapse from "@mui/material/Collapse";
-import ReplyInput from "./replyInput";
-import * as actionTypes from "../redux/actions/actionTypes";
+
+
 import { connect } from "react-redux";
 import { fetchComments } from "../redux/actions/index";
 interface IProps {

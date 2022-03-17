@@ -1,12 +1,9 @@
 import * as actionTypes from "../actions/actionTypes";
-import { postComments, getAllComments } from "../../api";
-
 const initialState = {
   loading: false,
   error: null,
   items: [],
-};
-//Känns fel
+};  
 const commentsReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case actionTypes.POST_COMMENT_START:
